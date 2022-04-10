@@ -1,15 +1,28 @@
 const saveButton = document.getElementById("input-btn");
 const inputEl = document.getElementById("input-el");
 const ulEl = document.getElementById("ul-el");
-let myLeads = ["www.awesomelead.com", "www.epiclead.com", "www.greatlead.com"];
+let myLeads = [];
 
-function logSomething() {
+function pushLeads() {
   myLeads.push(inputEl.value);
-  // console.log(myLeads);
+  inputEl.value = "";
+  renderLeads();
 }
 
-saveButton.addEventListener("click", logSomething);
+saveButton.addEventListener("click", pushLeads);
 
-for(let i = 0; i < myLeads.length; i++){
-  ulEl.innerHTML += "<li>" + myLeads[i] + "</li>";
+function renderLeads() {
+  let listItems = "";
+  for (let i = 0; i < myLeads.length; i++) {
+    listItems += `
+        <li>
+            <a href="${myLeads[i]}" target="_blank">
+                ${myLeads[i]}
+            </a>
+        </li>`;
+    console.log(listItems);
+  }
+  ulEl.innerHTML = listItems;
 }
+
+
